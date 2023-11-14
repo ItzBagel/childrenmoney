@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .child {
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h3 {
+            margin: 0 0 20px;
+        }
+        p {
+            font-size: 24px;
+            margin: 0 0 20px;
+        }
+        input {
+            margin: 0 0 20px;
+            padding: 10px;
+            width: 60%;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            color: #000;
+            cursor: pointer;
+        }
+        button:nth-of-type(1) {
+            background-color: #2aad4b; /* Bright yellow */
+            margin-right: 10px;
+        }
+
+        button:nth-last-of-type(2) {
+            background-color: #ff2e1f;
+        }
+        .logs {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align: center; padding: 20px;">Children's Money</h2>
+
+<div class="child" id="child1">
+    <h3>Della</h3>
+    <p>Balance: £<span id="balance1">0</span></p>
+    <input type="number" id="amount1" min="0">
+    <br>
+    <input type="text" id="reason1" placeholder="Reason">
+    <br>
+    <button onclick="addMoney(1)">Add</button>
+    <button onclick="subtractMoney(1)">Subtract</button>
+    <button onclick="toggleLogs(1)">Show Logs</button>
+    <div class="logs" id="logs1"></div>
+</div>
+
+<div class="child" id="child2">
+    <h3>Nesta</h3>
+    <p>Balance: £<span id="balance2">0</span></p>
+    <input type="number" id="amount2" min="0">
+    <br>
+    <input type="text" id="reason2" placeholder="Reason">
+    <br>
+    <button onclick="addMoney(2)">Add</button>
+    <button onclick="subtractMoney(2)">Subtract</button>
+    <button onclick="toggleLogs(2)">Show Logs</button>
+    <div class="logs" id="logs2"></div>
+</div>
+
+<div class="child" id="child3">
+    <h3>Nye</h3>
+    <p>Balance: £<span id="balance3">0</span></p>
+    <input type="number" id="amount3" min="0">
+    <br>
+    <input type="text" id="reason3" placeholder="Reason">
+    <br>
+    <button onclick="addMoney(3)">Add</button>
+    <button onclick="subtractMoney(3)">Subtract</button>
+    <button onclick="toggleLogs(3)">Show Logs</button>
+    <div class="logs" id="logs3"></div>
+</div>
+
+<script>
+function addMoney(childNumber) {
+    var amount = document.getElementById('amount' + childNumber).value;
+    var balance = document.getElementById('balance' + childNumber);
+    balance.innerHTML = parseFloat(balance.innerHTML) + parseFloat(amount);
+    var reason = document.getElementById('reason' + childNumber).value;
+    var logs = document.getElementById('logs' + childNumber);
+    if (reason.trim() !== '') {
+        logs.innerHTML += 'Added $' + amount + ' - ' + reason + '<br>';
+    } else {
+        logs.innerHTML += 'Added $' + amount + '<br>';
+    }
+}
+
+function subtractMoney(childNumber) {
+    var amount = document.getElementById('amount' + childNumber).value;
+    var balance = document.getElementById('balance' + childNumber);
+    balance.innerHTML = parseFloat(balance.innerHTML) - parseFloat(amount);
+    var reason = document.getElementById('reason' + childNumber).value;
+    var logs = document.getElementById('logs' + childNumber);
+    if (reason.trim() !== '') {
+        logs.innerHTML += 'Subtracted $' + amount + ' - ' + reason + '<br>';
+    } else {
+        logs.innerHTML += 'Subtracted $' + amount + '<br>';
+    }
+}
+
+function toggleLogs(childNumber) {
+    var logs = document.getElementById('logs' + childNumber);
+    if (logs.style.display === 'none') {
+        logs.style.display = 'block';
+    } else {
+        logs.style.display = 'none';
+    }
+}
+</script>
+
+</body>
+</html>
